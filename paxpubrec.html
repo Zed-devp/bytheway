@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>ByTheWay carpool</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <!-- Bootstrap Css -->
+    <link href="static/bootstrap-assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Style -->
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link href="static/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="static/plugins/owl-carousel/owl.theme.css" rel="stylesheet">
+    <link href="static/plugins/owl-carousel/owl.transitions.css" rel="stylesheet">
+    <link href="static/plugins/Lightbox/dist/css/lightbox.css" rel="stylesheet">
+    <link href="static/plugins/Icons/et-line-font/style.css" rel="stylesheet">
+    <link href="static/plugins/animate.css/animate.css" rel="stylesheet">
+    <link href="static/css/main.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="static/css/style.css" type="text/css" media="all">-->
+
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css"/>
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/prettify-1.0.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/default.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script src="js/moment-with-locales.js"></script>
+    <script src="js/bootstrap-datetimepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/cityPicker.css">
+    <script type="text/javascript" src="js/cityData.js"></script>
+    <script type="text/javascript" src="js/cityPicker.js"></script>
+
+</head>
+<body>
+<script type="text/javascript">
+    $(function () {
+        $('#timepicker').datetimepicker();
+        document.getElementById("timepicker").value = $("#timepicker").val();
+
+        var time_test = document.getElementById('time_test');
+        var a = document.createElement('a');
+        a.innerHTML = $("#timepicker").val();
+        time_test.append(a);
+    });
+    $(document).ready(function () {
+        $("#btn1").click(function () {
+
+
+            var time = $("#datetime").val();
+
+            var stringTime = "11/10/2017 5:12 AM";
+
+            var timestamp = Date.parse(new Date(time));
+
+            timestamp = timestamp / 1000;
+
+            alert("Text: " + time + "Timestamp: " + timestamp);
+
+        });
+    });
+
+    //    var time_test=document.getElementById('time_test');
+    //    var a=document.createElement('a');
+    //    a.innerHTML=time;
+    //    time_test.append(a);
+
+
+</script>
+
+
+<!--http://www.jq22.com/jquery-info4661-->
+<!--http://www.bootcss.com/p/bootstrap-datetimepicker/-->
+
+
+<div class="row">
+    <div class="col-lg-2">
+
+    </div>
+    <div class="col-lg-8">
+        <legend><h2><span class="label label-success"><span class="glyphicon glyphicon-hand-right" aria-hidden="true"> 我要出发！</span></span>
+        </h2></legend>
+        <div class="container">
+            <div class="row">
+                <div class='col-lg-3'>
+                    <form action="/bytheway/paxpubrec.php" method="post">
+                        <br>出发时间
+
+                        <div class="row">
+                            <div class=" col-lg-9">
+
+                                <input type="text" class="form-control" id="timepicker" Name="timepicker"
+                                       placeholder="点击选择时间">
+
+                            </div>
+                            <div class="col-lg-3">
+                                <input type="button" id="add_time" value="添加">
+                                <div id="time_list">
+
+
+
+
+                                </div>
+                            </div>
+                            <script>
+                                $(document).ready(function () {
+                                    $("#add_time").click(function () {
+
+                                        var time_list= document.getElementById("time_list");
+
+                                        var time = document.createElement("input");
+
+                                        time.type="button";
+
+                                        v=document.getElementById("timepicker").value;
+
+                                        var timestamp = Date.parse(new Date(v));
+
+                                        timestamp = timestamp / 1000;
+
+                                        time.value=timestamp;
+
+                                        time.name="datetime["+timestamp+"]";
+
+                                        time_list.append(time);
+
+
+
+
+
+                                    });
+                                });
+
+                            </script>
+
+                        </div>
+
+                        <br>出发地 <input type="text" Name="dept_add" placeholder="22 west park ave" required="">
+
+                        <br>出发城市 <input type="text" Name="dept_city" placeholder="toronto" required="">
+
+                        <br>出发省份 <input type="text" Name="dept_prov" placeholder="ontario" required="">
+
+                        <br><br>目的地 <input type="text" Name="dest_add" placeholder="青楼" required="">
+
+                        <br>目的城市 <input type="text" Name="dest_city" placeholder="toronto" required="">
+
+                        <br>目的省份 <input type="text" Name="dest_prov" placeholder="ontario" required="">
+
+                        <br><br>
+
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <p>希望司机是：</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+
+                                <label style="opacity: 20"><input Name="driver_pref" type="radio" value="1"/> 男</label>
+
+                            </div>
+                            <div class="col-lg-3">
+
+                                <label style="opacity: 20"><input Name="driver_pref" type="radio" value="0"/> 女</label>
+
+                            </div>
+                            <div class="col-lg-5">
+                                <label style="opacity: 20"><input Name="driver_pref" type="radio" value="2"/>
+                                    无所谓</label>
+                            </div>
+                        </div>
+                        <br>
+                        微信号 <input type="text" Name="wechat" placeholder="necessary" required="">
+                        <br><br>
+                        手机号 <input type="text" Name="phone" placeholder="optional">
+                        <br><br>
+
+                        人 <input type="text" Name="pax_num" placeholder="optional">
+                        <br><br>
+                        descript<input type="text" Name="despt" placeholder="optional">
+                        <br><br>
+                        <input type="submit" Name="submit" value="submit">
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+
+        <button id="btn1">
+            test time
+        </button>
+
+
+    </div>
+
+
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+
+<div id="time_test">
+</div>
+
+
+</body>
+</html>
